@@ -1,0 +1,65 @@
+class Persona {
+    public float pesoKilos;
+    public float alturaCentimetros;
+    public int edadAnios;
+    
+    public float getPesoKilos() {
+        return pesoKilos;
+    }
+    
+    public void setPesoKilos(float pesoKilos) {
+        this.pesoKilos = pesoKilos;
+    }
+    
+    public float getAlturaCentimetros() {
+        return alturaCentimetros;
+    }
+    
+    public void setAlturaCentimetros(float alturaCentimetros) {
+        this.alturaCentimetros = alturaCentimetros;
+    }
+    
+    public int getEdadAnios() {
+        return edadAnios;
+    }
+    
+    public void setEdadAnios(int edadAnios) {
+        this.edadAnios = edadAnios;
+    }
+    
+    // Método para calcular el TMB
+    public float calcularTMB() {
+        return 0; // Valor por defecto, se sobrescribirá en las clases hijas
+    }
+}
+
+class Hombre extends Persona {
+    @Override
+    public float calcularTMB() {
+        return 88.362f + (13.397f * getPesoKilos()) + (4.799f * getAlturaCentimetros()) - (5.677f * getEdadAnios());
+    }
+}
+
+class Mujer extends Persona {
+    @Override
+    public float calcularTMB() {
+        return 447.593f + (9.247f * getPesoKilos()) + (3.098f * getAlturaCentimetros()) - (4.33f * getEdadAnios());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Persona hombre = new Hombre();
+        hombre.setPesoKilos(70.0f);
+        hombre.setAlturaCentimetros(170.0f);
+        hombre.setEdadAnios(30);
+        
+        Persona mujer = new Mujer();
+        mujer.setPesoKilos(60.0f);
+        mujer.setAlturaCentimetros(160.0f);
+        mujer.setEdadAnios(25);
+        
+        System.out.println("TMB Hombre: " + hombre.calcularTMB());
+        System.out.println("TMB Mujer: " + mujer.calcularTMB());
+    }
+}
